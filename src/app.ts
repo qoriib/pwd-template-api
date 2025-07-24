@@ -5,7 +5,6 @@ import express, {
   Request,
   Response,
   NextFunction,
-  Router,
 } from 'express';
 import cors from 'cors';
 import { PORT } from './config';
@@ -29,7 +28,10 @@ export default class App {
   }
 
   private handleError(): void {
-    // Not Found Handler
+    /*
+      📒 Docs:
+      This is a not found error handler.
+    */
     this.app.use((req: Request, res: Response, next: NextFunction) => {
       if (req.path.includes('/api/')) {
         res
@@ -42,7 +44,11 @@ export default class App {
       }
     });
 
-    // Error Handler
+    /*
+        📒 Docs:
+        This is a centralized error-handling middleware.
+        🛠️ Note: Remove the console line below before deploying to production.
+    */
     this.app.use(
       (error: any, req: Request, res: Response, next: NextFunction) => {
         console.log(error);
@@ -74,7 +80,9 @@ export default class App {
     const sampleRouter = new SampleRouter();
 
     this.app.get('/api', (req: Request, res: Response) => {
-      res.send(`Hello, Purwadhika Student API!`);
+      res.send(
+        `Hello, Purwadhika student 👋. Have fun working on your mini project ☺️`
+      );
     });
 
     this.app.use('/api/samples', sampleRouter.getRouter());
@@ -82,7 +90,7 @@ export default class App {
 
   public start(): void {
     this.app.listen(PORT, () => {
-      console.log(`  ➜ [API] Local:   http://localhost:${PORT}/`);
+      console.log(`➜ [API] Local: http://localhost:${PORT}/`);
     });
   }
 }
