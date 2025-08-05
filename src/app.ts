@@ -8,8 +8,10 @@ import express, {
 } from 'express';
 import cors from 'cors';
 import { PORT } from './config';
-import { SampleRouter } from './routers/sample.router';
+import { MainRouter } from './routers/main.router';
 import { AppError } from './utils/app.error';
+import { NotFoundMiddleware } from './middlewares/not-found.middleware';
+import { ErrorHandlerMiddleware } from './middlewares/error-handler.middleware';
 
 export default class App {
   private app: Express;
@@ -32,52 +34,17 @@ export default class App {
       📒 Docs:
       This is a not found error handler.
     */
-    this.app.use((req: Request, res: Response, next: NextFunction) => {
-      if (req.path.includes('/api/')) {
-        res
-          .status(404)
-          .send(
-            'We are sorry, the endpoint you are trying to access could not be found on this server. Please ensure the URL is correct!'
-          );
-      } else {
-        next();
-      }
-    });
+    this.app.use(NotFoundMiddleware.handle());
 
     /*
         📒 Docs:
         This is a centralized error-handling middleware.
-        🛠️ Note: Remove the console line below before deploying to production.
     */
-    this.app.use(
-      (error: any, req: Request, res: Response, next: NextFunction) => {
-        console.log(error);
-        const statusCode =
-          error.statusCode ||
-          (error.name === 'TokenExpiredError' ||
-          error.name === 'JsonWebTokenError'
-            ? 401
-            : 500);
-        const message =
-          error instanceof AppError || error.isOperational
-            ? error.message ||
-              error.name === 'TokenExpiredError' ||
-              error.name === 'JsonWebTokenError'
-            : 'Internal server error. Please try again later!';
-        if (req.path.includes('/api/')) {
-          res.status(statusCode).json({
-            success: false,
-            message: message,
-          });
-        } else {
-          next();
-        }
-      }
-    );
+    this.app.use(ErrorHandlerMiddleware.handle());
   }
 
   private routes(): void {
-    const sampleRouter = new SampleRouter();
+    const mainRouter = new MainRouter();
 
     this.app.get('/api', (req: Request, res: Response) => {
       res.send(
@@ -85,7 +52,7 @@ export default class App {
       );
     });
 
-    this.app.use('/api/samples', sampleRouter.getRouter());
+    this.app.use(mainRouter.getRouter());
   }
 
   public start(): void {

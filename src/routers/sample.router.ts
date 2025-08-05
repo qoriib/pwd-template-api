@@ -1,6 +1,6 @@
 import { SampleController } from '../controllers/sample.controller';
 import { Router } from 'express';
-import { JwtVerify } from '../middlewares/jwt.verify';
+import { JwtVerify } from '../middlewares/jwt-verify.middleware';
 
 export class SampleRouter {
   private router: Router;
@@ -13,9 +13,9 @@ export class SampleRouter {
   }
 
   private initializeRoutes(): void {
-    this.router.get(
+    this.router.post(
       '/',
-      JwtVerify.verifyToken,
+      // JwtVerify.verifyToken(process.env.JWT_SECRET_KEY!),
       this.sampleController.getSampleData
     );
   }
