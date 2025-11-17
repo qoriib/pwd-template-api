@@ -120,12 +120,149 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.SampleScalarFieldEnum = {
+exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
+  email: 'email',
   name: 'name',
-  code: 'code',
+  phone: 'phone',
+  passwordHash: 'passwordHash',
+  role: 'role',
+  provider: 'provider',
+  providerId: 'providerId',
+  isVerified: 'isVerified',
+  avatarUrl: 'avatarUrl',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
+};
+
+exports.Prisma.TenantProfileScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  displayName: 'displayName',
+  description: 'description',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.UserTokenScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  type: 'type',
+  token: 'token',
+  expiresAt: 'expiresAt',
+  consumedAt: 'consumedAt',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.PropertyCategoryScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PropertyScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  categoryId: 'categoryId',
+  name: 'name',
+  slug: 'slug',
+  description: 'description',
+  addressLine1: 'addressLine1',
+  city: 'city',
+  state: 'state',
+  country: 'country',
+  postalCode: 'postalCode',
+  latitude: 'latitude',
+  longitude: 'longitude',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PropertyImageScalarFieldEnum = {
+  id: 'id',
+  propertyId: 'propertyId',
+  url: 'url',
+  isPrimary: 'isPrimary',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.RoomScalarFieldEnum = {
+  id: 'id',
+  propertyId: 'propertyId',
+  name: 'name',
+  description: 'description',
+  capacity: 'capacity',
+  totalUnits: 'totalUnits',
+  basePrice: 'basePrice',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.RoomImageScalarFieldEnum = {
+  id: 'id',
+  roomId: 'roomId',
+  url: 'url',
+  isPrimary: 'isPrimary'
+};
+
+exports.Prisma.RoomAvailabilityScalarFieldEnum = {
+  id: 'id',
+  roomId: 'roomId',
+  date: 'date',
+  isAvailable: 'isAvailable',
+  availableUnits: 'availableUnits',
+  note: 'note',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.RoomPriceAdjustmentScalarFieldEnum = {
+  id: 'id',
+  roomId: 'roomId',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  type: 'type',
+  value: 'value',
+  note: 'note',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.BookingScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  propertyId: 'propertyId',
+  roomId: 'roomId',
+  checkIn: 'checkIn',
+  checkOut: 'checkOut',
+  guests: 'guests',
+  status: 'status',
+  paymentDueAt: 'paymentDueAt',
+  totalAmount: 'totalAmount',
+  currency: 'currency',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PaymentProofScalarFieldEnum = {
+  id: 'id',
+  bookingId: 'bookingId',
+  fileUrl: 'fileUrl',
+  fileName: 'fileName',
+  mimeType: 'mimeType',
+  uploadedAt: 'uploadedAt',
+  verifiedAt: 'verifiedAt'
+};
+
+exports.Prisma.ReviewScalarFieldEnum = {
+  id: 'id',
+  bookingId: 'bookingId',
+  propertyId: 'propertyId',
+  userId: 'userId',
+  comment: 'comment',
+  rating: 'rating',
+  tenantReply: 'tenantReply',
+  repliedAt: 'repliedAt',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -133,14 +270,120 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
-exports.Prisma.SampleOrderByRelevanceFieldEnum = {
-  name: 'name',
-  code: 'code'
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
 };
 
+exports.Prisma.UserOrderByRelevanceFieldEnum = {
+  email: 'email',
+  name: 'name',
+  phone: 'phone',
+  passwordHash: 'passwordHash',
+  providerId: 'providerId',
+  avatarUrl: 'avatarUrl'
+};
+
+exports.Prisma.TenantProfileOrderByRelevanceFieldEnum = {
+  displayName: 'displayName',
+  description: 'description'
+};
+
+exports.Prisma.UserTokenOrderByRelevanceFieldEnum = {
+  token: 'token'
+};
+
+exports.Prisma.PropertyCategoryOrderByRelevanceFieldEnum = {
+  name: 'name'
+};
+
+exports.Prisma.PropertyOrderByRelevanceFieldEnum = {
+  name: 'name',
+  slug: 'slug',
+  description: 'description',
+  addressLine1: 'addressLine1',
+  city: 'city',
+  state: 'state',
+  country: 'country',
+  postalCode: 'postalCode'
+};
+
+exports.Prisma.PropertyImageOrderByRelevanceFieldEnum = {
+  url: 'url'
+};
+
+exports.Prisma.RoomOrderByRelevanceFieldEnum = {
+  name: 'name',
+  description: 'description'
+};
+
+exports.Prisma.RoomImageOrderByRelevanceFieldEnum = {
+  url: 'url'
+};
+
+exports.Prisma.RoomAvailabilityOrderByRelevanceFieldEnum = {
+  note: 'note'
+};
+
+exports.Prisma.RoomPriceAdjustmentOrderByRelevanceFieldEnum = {
+  note: 'note'
+};
+
+exports.Prisma.BookingOrderByRelevanceFieldEnum = {
+  currency: 'currency'
+};
+
+exports.Prisma.PaymentProofOrderByRelevanceFieldEnum = {
+  fileUrl: 'fileUrl',
+  fileName: 'fileName',
+  mimeType: 'mimeType'
+};
+
+exports.Prisma.ReviewOrderByRelevanceFieldEnum = {
+  comment: 'comment',
+  tenantReply: 'tenantReply'
+};
+exports.UserRole = exports.$Enums.UserRole = {
+  USER: 'USER',
+  TENANT: 'TENANT'
+};
+
+exports.AuthProvider = exports.$Enums.AuthProvider = {
+  EMAIL: 'EMAIL',
+  GOOGLE: 'GOOGLE',
+  FACEBOOK: 'FACEBOOK'
+};
+
+exports.TokenType = exports.$Enums.TokenType = {
+  RESET_PASSWORD: 'RESET_PASSWORD'
+};
+
+exports.PriceAdjustmentType = exports.$Enums.PriceAdjustmentType = {
+  NOMINAL: 'NOMINAL'
+};
+
+exports.BookingStatus = exports.$Enums.BookingStatus = {
+  WAITING_PAYMENT: 'WAITING_PAYMENT',
+  WAITING_CONFIRMATION: 'WAITING_CONFIRMATION',
+  PROCESSING: 'PROCESSING',
+  CANCELLED: 'CANCELLED',
+  COMPLETED: 'COMPLETED'
+};
 
 exports.Prisma.ModelName = {
-  Sample: 'Sample'
+  User: 'User',
+  TenantProfile: 'TenantProfile',
+  UserToken: 'UserToken',
+  PropertyCategory: 'PropertyCategory',
+  Property: 'Property',
+  PropertyImage: 'PropertyImage',
+  Room: 'Room',
+  RoomImage: 'RoomImage',
+  RoomAvailability: 'RoomAvailability',
+  RoomPriceAdjustment: 'RoomPriceAdjustment',
+  Booking: 'Booking',
+  PaymentProof: 'PaymentProof',
+  Review: 'Review'
 };
 
 /**
