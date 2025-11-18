@@ -1,12 +1,3 @@
-/*
-  Warnings:
-
-  - You are about to drop the `samples` table. If the table is not empty, all the data it contains will be lost.
-
-*/
--- DropTable
-DROP TABLE `samples`;
-
 -- CreateTable
 CREATE TABLE `User` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
@@ -40,17 +31,17 @@ CREATE TABLE `TenantProfile` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `user_tokens` (
+CREATE TABLE `UserToken` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `userId` INTEGER NOT NULL,
-    `type` ENUM('RESET_PASSWORD') NOT NULL,
+    `type` ENUM('EMAIL_VERIFY', 'RESET_PASSWORD') NOT NULL,
     `token` VARCHAR(191) NOT NULL,
     `expiresAt` DATETIME(3) NOT NULL,
     `consumedAt` DATETIME(3) NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
-    UNIQUE INDEX `user_tokens_token_key`(`token`),
-    INDEX `user_tokens_userId_type_idx`(`userId`, `type`),
+    UNIQUE INDEX `UserToken_token_key`(`token`),
+    INDEX `UserToken_userId_type_idx`(`userId`, `type`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -90,14 +81,14 @@ CREATE TABLE `Property` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `property_images` (
+CREATE TABLE `PropertyImage` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `propertyId` INTEGER NOT NULL,
     `url` VARCHAR(191) NOT NULL,
     `isPrimary` BOOLEAN NOT NULL DEFAULT false,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
-    INDEX `property_images_propertyId_idx`(`propertyId`),
+    INDEX `PropertyImage_propertyId_idx`(`propertyId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -118,18 +109,18 @@ CREATE TABLE `Room` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `room_images` (
+CREATE TABLE `RoomImage` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `roomId` INTEGER NOT NULL,
     `url` VARCHAR(191) NOT NULL,
     `isPrimary` BOOLEAN NOT NULL DEFAULT false,
 
-    INDEX `room_images_roomId_idx`(`roomId`),
+    INDEX `RoomImage_roomId_idx`(`roomId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `room_availabilities` (
+CREATE TABLE `RoomAvailability` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `roomId` INTEGER NOT NULL,
     `date` DATETIME(3) NOT NULL,
@@ -138,29 +129,29 @@ CREATE TABLE `room_availabilities` (
     `note` VARCHAR(191) NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
-    INDEX `room_availabilities_date_idx`(`date`),
-    UNIQUE INDEX `room_availabilities_roomId_date_key`(`roomId`, `date`),
+    INDEX `RoomAvailability_date_idx`(`date`),
+    UNIQUE INDEX `RoomAvailability_roomId_date_key`(`roomId`, `date`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `room_price_adjustments` (
+CREATE TABLE `RoomPriceAdjustment` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `roomId` INTEGER NOT NULL,
     `startDate` DATETIME(3) NOT NULL,
     `endDate` DATETIME(3) NOT NULL,
-    `type` ENUM('NOMINAL') NOT NULL,
+    `type` ENUM('PERCENTAGE', 'NOMINAL') NOT NULL,
     `value` DECIMAL(10, 2) NOT NULL,
     `note` VARCHAR(191) NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
-    INDEX `room_price_adjustments_roomId_idx`(`roomId`),
-    INDEX `room_price_adjustments_startDate_endDate_idx`(`startDate`, `endDate`),
+    INDEX `RoomPriceAdjustment_roomId_idx`(`roomId`),
+    INDEX `RoomPriceAdjustment_startDate_endDate_idx`(`startDate`, `endDate`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `bookings` (
+CREATE TABLE `Booking` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `userId` INTEGER NOT NULL,
     `propertyId` INTEGER NOT NULL,
@@ -175,14 +166,14 @@ CREATE TABLE `bookings` (
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
 
-    INDEX `bookings_userId_status_idx`(`userId`, `status`),
-    INDEX `bookings_propertyId_idx`(`propertyId`),
-    INDEX `bookings_roomId_checkIn_checkOut_idx`(`roomId`, `checkIn`, `checkOut`),
+    INDEX `Booking_userId_status_idx`(`userId`, `status`),
+    INDEX `Booking_propertyId_idx`(`propertyId`),
+    INDEX `Booking_roomId_checkIn_checkOut_idx`(`roomId`, `checkIn`, `checkOut`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `payment_proofs` (
+CREATE TABLE `PaymentProof` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `bookingId` INTEGER NOT NULL,
     `fileUrl` VARCHAR(191) NOT NULL,
@@ -191,12 +182,12 @@ CREATE TABLE `payment_proofs` (
     `uploadedAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `verifiedAt` DATETIME(3) NULL,
 
-    UNIQUE INDEX `payment_proofs_bookingId_key`(`bookingId`),
+    UNIQUE INDEX `PaymentProof_bookingId_key`(`bookingId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `reviews` (
+CREATE TABLE `Review` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `bookingId` INTEGER NOT NULL,
     `propertyId` INTEGER NOT NULL,
@@ -207,9 +198,9 @@ CREATE TABLE `reviews` (
     `repliedAt` DATETIME(3) NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
-    UNIQUE INDEX `reviews_bookingId_key`(`bookingId`),
-    INDEX `reviews_propertyId_idx`(`propertyId`),
-    INDEX `reviews_userId_idx`(`userId`),
+    UNIQUE INDEX `Review_bookingId_key`(`bookingId`),
+    INDEX `Review_propertyId_idx`(`propertyId`),
+    INDEX `Review_userId_idx`(`userId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -217,7 +208,7 @@ CREATE TABLE `reviews` (
 ALTER TABLE `TenantProfile` ADD CONSTRAINT `TenantProfile_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `User`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `user_tokens` ADD CONSTRAINT `user_tokens_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `User`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `UserToken` ADD CONSTRAINT `UserToken_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `User`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `Property` ADD CONSTRAINT `Property_tenantId_fkey` FOREIGN KEY (`tenantId`) REFERENCES `TenantProfile`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
@@ -226,37 +217,37 @@ ALTER TABLE `Property` ADD CONSTRAINT `Property_tenantId_fkey` FOREIGN KEY (`ten
 ALTER TABLE `Property` ADD CONSTRAINT `Property_categoryId_fkey` FOREIGN KEY (`categoryId`) REFERENCES `PropertyCategory`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `property_images` ADD CONSTRAINT `property_images_propertyId_fkey` FOREIGN KEY (`propertyId`) REFERENCES `Property`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `PropertyImage` ADD CONSTRAINT `PropertyImage_propertyId_fkey` FOREIGN KEY (`propertyId`) REFERENCES `Property`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `Room` ADD CONSTRAINT `Room_propertyId_fkey` FOREIGN KEY (`propertyId`) REFERENCES `Property`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `room_images` ADD CONSTRAINT `room_images_roomId_fkey` FOREIGN KEY (`roomId`) REFERENCES `Room`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `RoomImage` ADD CONSTRAINT `RoomImage_roomId_fkey` FOREIGN KEY (`roomId`) REFERENCES `Room`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `room_availabilities` ADD CONSTRAINT `room_availabilities_roomId_fkey` FOREIGN KEY (`roomId`) REFERENCES `Room`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `RoomAvailability` ADD CONSTRAINT `RoomAvailability_roomId_fkey` FOREIGN KEY (`roomId`) REFERENCES `Room`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `room_price_adjustments` ADD CONSTRAINT `room_price_adjustments_roomId_fkey` FOREIGN KEY (`roomId`) REFERENCES `Room`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `RoomPriceAdjustment` ADD CONSTRAINT `RoomPriceAdjustment_roomId_fkey` FOREIGN KEY (`roomId`) REFERENCES `Room`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `bookings` ADD CONSTRAINT `bookings_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `User`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `Booking` ADD CONSTRAINT `Booking_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `User`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `bookings` ADD CONSTRAINT `bookings_propertyId_fkey` FOREIGN KEY (`propertyId`) REFERENCES `Property`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `Booking` ADD CONSTRAINT `Booking_propertyId_fkey` FOREIGN KEY (`propertyId`) REFERENCES `Property`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `bookings` ADD CONSTRAINT `bookings_roomId_fkey` FOREIGN KEY (`roomId`) REFERENCES `Room`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `Booking` ADD CONSTRAINT `Booking_roomId_fkey` FOREIGN KEY (`roomId`) REFERENCES `Room`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `payment_proofs` ADD CONSTRAINT `payment_proofs_bookingId_fkey` FOREIGN KEY (`bookingId`) REFERENCES `bookings`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `PaymentProof` ADD CONSTRAINT `PaymentProof_bookingId_fkey` FOREIGN KEY (`bookingId`) REFERENCES `Booking`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `reviews` ADD CONSTRAINT `reviews_bookingId_fkey` FOREIGN KEY (`bookingId`) REFERENCES `bookings`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `Review` ADD CONSTRAINT `Review_bookingId_fkey` FOREIGN KEY (`bookingId`) REFERENCES `Booking`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `reviews` ADD CONSTRAINT `reviews_propertyId_fkey` FOREIGN KEY (`propertyId`) REFERENCES `Property`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `Review` ADD CONSTRAINT `Review_propertyId_fkey` FOREIGN KEY (`propertyId`) REFERENCES `Property`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `reviews` ADD CONSTRAINT `reviews_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `User`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `Review` ADD CONSTRAINT `Review_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `User`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
