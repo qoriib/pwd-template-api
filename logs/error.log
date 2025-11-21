@@ -6,3 +6,107 @@
   "ip": "::1",
   "statusCode": 404
 }
+[2025-11-21 22:46:14] ERROR: GET /api/properties - Internal server error. Please try again later!  {
+  "name": "PrismaClientInitializationError",
+  "stack": "PrismaClientInitializationError: \nInvalid `prisma.property.count()` invocation in\n/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/src/services/property.service.ts:9:23\n\n  6 async list(params: { city?: string; page: number; pageSize: number }) {\n  7   const where = params.city ? { city: params.city } : {};\n  8   const [total, data] = await Promise.all([\n→ 9     prisma.property.count(\nCan't reach database server at `localhost:3306`\n\nPlease make sure your database server is running at `localhost:3306`.\n    at zn.handleRequestError (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:121:7759)\n    at zn.handleAndLogRequestError (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:121:6784)\n    at zn.request (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:121:6491)\n    at async l (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:130:9778)\n    at async Promise.all (index 0)",
+  "path": "/api/properties",
+  "method": "GET",
+  "ip": "::ffff:127.0.0.1",
+  "statusCode": 500
+}
+[2025-11-21 22:46:14] ERROR: GET /api/properties/destinations - Internal server error. Please try again later!  {
+  "name": "PrismaClientInitializationError",
+  "stack": "PrismaClientInitializationError: \nInvalid `prisma.property.findMany()` invocation in\n/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/src/services/property.service.ts:30:42\n\n  27 }\n  28 \n  29 async destinations() {\n→ 30   const cities = await prisma.property.findMany(\nCan't reach database server at `localhost:3306`\n\nPlease make sure your database server is running at `localhost:3306`.\n    at zn.handleRequestError (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:121:7759)\n    at zn.handleAndLogRequestError (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:121:6784)\n    at zn.request (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:121:6491)\n    at async l (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:130:9778)",
+  "path": "/api/properties/destinations",
+  "method": "GET",
+  "ip": "::ffff:127.0.0.1",
+  "statusCode": 500
+}
+[2025-11-21 22:46:17] ERROR: GET /api/properties - Internal server error. Please try again later!  {
+  "name": "PrismaClientInitializationError",
+  "stack": "PrismaClientInitializationError: \nInvalid `prisma.property.count()` invocation in\n/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/src/services/property.service.ts:9:23\n\n  6 async list(params: { city?: string; page: number; pageSize: number }) {\n  7   const where = params.city ? { city: params.city } : {};\n  8   const [total, data] = await Promise.all([\n→ 9     prisma.property.count(\nCan't reach database server at `localhost:3306`\n\nPlease make sure your database server is running at `localhost:3306`.\n    at zn.handleRequestError (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:121:7759)\n    at zn.handleAndLogRequestError (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:121:6784)\n    at zn.request (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:121:6491)\n    at async l (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:130:9778)\n    at async Promise.all (index 0)",
+  "path": "/api/properties",
+  "method": "GET",
+  "ip": "::ffff:127.0.0.1",
+  "statusCode": 500
+}
+[2025-11-21 22:46:17] ERROR: GET /api/properties/destinations - Internal server error. Please try again later!  {
+  "name": "PrismaClientInitializationError",
+  "stack": "PrismaClientInitializationError: \nInvalid `prisma.property.findMany()` invocation in\n/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/src/services/property.service.ts:30:42\n\n  27 }\n  28 \n  29 async destinations() {\n→ 30   const cities = await prisma.property.findMany(\nCan't reach database server at `localhost:3306`\n\nPlease make sure your database server is running at `localhost:3306`.\n    at zn.handleRequestError (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:121:7759)\n    at zn.handleAndLogRequestError (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:121:6784)\n    at zn.request (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:121:6491)\n    at async l (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:130:9778)",
+  "path": "/api/properties/destinations",
+  "method": "GET",
+  "ip": "::ffff:127.0.0.1",
+  "statusCode": 500
+}
+[2025-11-21 22:46:25] ERROR: POST /api/auth/login - Internal server error. Please try again later!  {
+  "name": "PrismaClientInitializationError",
+  "stack": "PrismaClientInitializationError: \nInvalid `prisma.user.findUnique()` invocation in\n/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/src/services/auth.service.ts:67:36\n\n  64 }\n  65 \n  66 async login(email: string, password: string) {\n→ 67   const user = await prisma.user.findUnique(\nCan't reach database server at `localhost:3306`\n\nPlease make sure your database server is running at `localhost:3306`.\n    at zn.handleRequestError (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:121:7759)\n    at zn.handleAndLogRequestError (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:121:6784)\n    at zn.request (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:121:6491)\n    at async l (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:130:9778)",
+  "path": "/api/auth/login",
+  "method": "POST",
+  "ip": "::ffff:127.0.0.1",
+  "statusCode": 500
+}
+[2025-11-21 22:46:34] ERROR: POST /api/auth/login - Internal server error. Please try again later!  {
+  "name": "PrismaClientInitializationError",
+  "stack": "PrismaClientInitializationError: \nInvalid `prisma.user.findUnique()` invocation in\n/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/src/services/auth.service.ts:67:36\n\n  64 }\n  65 \n  66 async login(email: string, password: string) {\n→ 67   const user = await prisma.user.findUnique(\nCan't reach database server at `localhost:3306`\n\nPlease make sure your database server is running at `localhost:3306`.\n    at zn.handleRequestError (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:121:7759)\n    at zn.handleAndLogRequestError (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:121:6784)\n    at zn.request (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:121:6491)\n    at async l (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:130:9778)",
+  "path": "/api/auth/login",
+  "method": "POST",
+  "ip": "::ffff:127.0.0.1",
+  "statusCode": 500
+}
+[2025-11-21 22:46:35] ERROR: POST /api/auth/login - Internal server error. Please try again later!  {
+  "name": "PrismaClientInitializationError",
+  "stack": "PrismaClientInitializationError: \nInvalid `prisma.user.findUnique()` invocation in\n/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/src/services/auth.service.ts:67:36\n\n  64 }\n  65 \n  66 async login(email: string, password: string) {\n→ 67   const user = await prisma.user.findUnique(\nCan't reach database server at `localhost:3306`\n\nPlease make sure your database server is running at `localhost:3306`.\n    at zn.handleRequestError (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:121:7759)\n    at zn.handleAndLogRequestError (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:121:6784)\n    at zn.request (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:121:6491)\n    at async l (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:130:9778)",
+  "path": "/api/auth/login",
+  "method": "POST",
+  "ip": "::ffff:127.0.0.1",
+  "statusCode": 500
+}
+[2025-11-21 22:46:39] ERROR: GET /api/properties - Internal server error. Please try again later!  {
+  "name": "PrismaClientInitializationError",
+  "stack": "PrismaClientInitializationError: \nInvalid `prisma.property.count()` invocation in\n/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/src/services/property.service.ts:9:23\n\n  6 async list(params: { city?: string; page: number; pageSize: number }) {\n  7   const where = params.city ? { city: params.city } : {};\n  8   const [total, data] = await Promise.all([\n→ 9     prisma.property.count(\nCan't reach database server at `localhost:3306`\n\nPlease make sure your database server is running at `localhost:3306`.\n    at zn.handleRequestError (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:121:7759)\n    at zn.handleAndLogRequestError (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:121:6784)\n    at zn.request (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:121:6491)\n    at async l (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:130:9778)\n    at async Promise.all (index 0)",
+  "path": "/api/properties",
+  "method": "GET",
+  "ip": "::ffff:127.0.0.1",
+  "statusCode": 500
+}
+[2025-11-21 22:46:39] ERROR: GET /api/properties - Internal server error. Please try again later!  {
+  "name": "PrismaClientInitializationError",
+  "stack": "PrismaClientInitializationError: \nInvalid `prisma.property.count()` invocation in\n/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/src/services/property.service.ts:9:23\n\n  6 async list(params: { city?: string; page: number; pageSize: number }) {\n  7   const where = params.city ? { city: params.city } : {};\n  8   const [total, data] = await Promise.all([\n→ 9     prisma.property.count(\nCan't reach database server at `localhost:3306`\n\nPlease make sure your database server is running at `localhost:3306`.\n    at zn.handleRequestError (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:121:7759)\n    at zn.handleAndLogRequestError (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:121:6784)\n    at zn.request (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:121:6491)\n    at async l (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:130:9778)\n    at async Promise.all (index 0)",
+  "path": "/api/properties",
+  "method": "GET",
+  "ip": "::ffff:127.0.0.1",
+  "statusCode": 500
+}
+[2025-11-21 22:46:39] ERROR: GET /api/properties/destinations - Internal server error. Please try again later!  {
+  "name": "PrismaClientInitializationError",
+  "stack": "PrismaClientInitializationError: \nInvalid `prisma.property.findMany()` invocation in\n/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/src/services/property.service.ts:30:42\n\n  27 }\n  28 \n  29 async destinations() {\n→ 30   const cities = await prisma.property.findMany(\nCan't reach database server at `localhost:3306`\n\nPlease make sure your database server is running at `localhost:3306`.\n    at zn.handleRequestError (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:121:7759)\n    at zn.handleAndLogRequestError (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:121:6784)\n    at zn.request (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:121:6491)\n    at async l (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:130:9778)",
+  "path": "/api/properties/destinations",
+  "method": "GET",
+  "ip": "::ffff:127.0.0.1",
+  "statusCode": 500
+}
+[2025-11-21 22:46:39] ERROR: GET /api/properties/destinations - Internal server error. Please try again later!  {
+  "name": "PrismaClientInitializationError",
+  "stack": "PrismaClientInitializationError: \nInvalid `prisma.property.findMany()` invocation in\n/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/src/services/property.service.ts:30:42\n\n  27 }\n  28 \n  29 async destinations() {\n→ 30   const cities = await prisma.property.findMany(\nCan't reach database server at `localhost:3306`\n\nPlease make sure your database server is running at `localhost:3306`.\n    at zn.handleRequestError (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:121:7759)\n    at zn.handleAndLogRequestError (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:121:6784)\n    at zn.request (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:121:6491)\n    at async l (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:130:9778)",
+  "path": "/api/properties/destinations",
+  "method": "GET",
+  "ip": "::ffff:127.0.0.1",
+  "statusCode": 500
+}
+[2025-11-21 22:48:06] ERROR: GET /api/properties - Internal server error. Please try again later!  {
+  "name": "PrismaClientInitializationError",
+  "stack": "PrismaClientInitializationError: \nInvalid `prisma.property.count()` invocation in\n/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/src/services/property.service.ts:9:23\n\n  6 async list(params: { city?: string; page: number; pageSize: number }) {\n  7   const where = params.city ? { city: params.city } : {};\n  8   const [total, data] = await Promise.all([\n→ 9     prisma.property.count(\nCan't reach database server at `localhost:3306`\n\nPlease make sure your database server is running at `localhost:3306`.\n    at zn.handleRequestError (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:121:7759)\n    at zn.handleAndLogRequestError (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:121:6784)\n    at zn.request (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:121:6491)\n    at async l (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:130:9778)\n    at async Promise.all (index 0)",
+  "path": "/api/properties",
+  "method": "GET",
+  "ip": "::ffff:127.0.0.1",
+  "statusCode": 500
+}
+[2025-11-21 22:48:06] ERROR: GET /api/properties/destinations - Internal server error. Please try again later!  {
+  "name": "PrismaClientInitializationError",
+  "stack": "PrismaClientInitializationError: \nInvalid `prisma.property.findMany()` invocation in\n/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/src/services/property.service.ts:30:42\n\n  27 }\n  28 \n  29 async destinations() {\n→ 30   const cities = await prisma.property.findMany(\nCan't reach database server at `localhost:3306`\n\nPlease make sure your database server is running at `localhost:3306`.\n    at zn.handleRequestError (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:121:7759)\n    at zn.handleAndLogRequestError (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:121:6784)\n    at zn.request (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:121:6491)\n    at async l (/Users/nashrullah/Documents/Joki/25-11-17/WEB-91/pwd-template-api/node_modules/@prisma/client/runtime/library.js:130:9778)",
+  "path": "/api/properties/destinations",
+  "method": "GET",
+  "ip": "::ffff:127.0.0.1",
+  "statusCode": 500
+}

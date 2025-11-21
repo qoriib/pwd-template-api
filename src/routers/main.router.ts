@@ -3,6 +3,7 @@ import { BookingRouter } from './booking.router';
 import { AuthRouter } from './auth.router';
 import { ProfileRouter } from './profile.router';
 import { PropertyRouter } from './property.router';
+import { TenantOrderRouter } from './tenant-order.router';
 import { Router } from 'express';
 
 export class MainRouter {
@@ -12,6 +13,7 @@ export class MainRouter {
   private authRouter: AuthRouter;
   private profileRouter: ProfileRouter;
   private propertyRouter: PropertyRouter;
+  private tenantOrderRouter: TenantOrderRouter;
 
   constructor() {
     this.router = Router();
@@ -20,6 +22,7 @@ export class MainRouter {
     this.authRouter = new AuthRouter();
     this.profileRouter = new ProfileRouter();
     this.propertyRouter = new PropertyRouter();
+    this.tenantOrderRouter = new TenantOrderRouter();
 
     this.initializeRoutes();
   }
@@ -30,6 +33,7 @@ export class MainRouter {
     this.router.use('/api/properties', this.propertyRouter.getRouter());
     this.router.use('/api/samples', this.sampleRouter.getRouter());
     this.router.use('/api/bookings', this.bookingRouter.getRouter());
+     this.router.use('/api/tenant/orders', this.tenantOrderRouter.getRouter());
   }
 
   public getRouter(): Router {

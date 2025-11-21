@@ -32,4 +32,10 @@ export class AuthMiddleware {
       })
       .catch((err) => next(err));
   }
+
+  static requireTenant(req: Request, _res: Response, next: NextFunction) {
+    if (!req.userId) return next(new AppError('Unauthenticated', 401));
+    if (req.userRole !== 'TENANT') return next(new AppError('Forbidden: tenant only', 403));
+    return next();
+  }
 }
