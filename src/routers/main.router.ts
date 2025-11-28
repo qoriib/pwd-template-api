@@ -4,6 +4,8 @@ import { AuthRouter } from './auth.router';
 import { ProfileRouter } from './profile.router';
 import { PropertyRouter } from './property.router';
 import { TenantOrderRouter } from './tenant-order.router';
+import { ReviewRouter } from './review.router';
+import { ReportRouter } from './report.router';
 import { Router } from 'express';
 
 export class MainRouter {
@@ -14,6 +16,8 @@ export class MainRouter {
   private profileRouter: ProfileRouter;
   private propertyRouter: PropertyRouter;
   private tenantOrderRouter: TenantOrderRouter;
+  private reviewRouter: ReviewRouter;
+  private reportRouter: ReportRouter;
 
   constructor() {
     this.router = Router();
@@ -23,6 +27,8 @@ export class MainRouter {
     this.profileRouter = new ProfileRouter();
     this.propertyRouter = new PropertyRouter();
     this.tenantOrderRouter = new TenantOrderRouter();
+    this.reviewRouter = new ReviewRouter();
+    this.reportRouter = new ReportRouter();
 
     this.initializeRoutes();
   }
@@ -33,7 +39,9 @@ export class MainRouter {
     this.router.use('/api/properties', this.propertyRouter.getRouter());
     this.router.use('/api/samples', this.sampleRouter.getRouter());
     this.router.use('/api/bookings', this.bookingRouter.getRouter());
-     this.router.use('/api/tenant/orders', this.tenantOrderRouter.getRouter());
+    this.router.use('/api/tenant/orders', this.tenantOrderRouter.getRouter());
+    this.router.use('/api/reviews', this.reviewRouter.getRouter());
+    this.router.use('/api/tenant/reports', this.reportRouter.getRouter());
   }
 
   public getRouter(): Router {

@@ -55,4 +55,16 @@ export class TenantOrderController {
       next(err);
     }
   };
+
+  complete = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      if (!req.userId) throw new AppError('Unauthenticated', 401);
+      const bookingId = Number(req.params.id);
+      if (!bookingId) throw new AppError('Invalid booking id', 400);
+      const updated = await this.service.markCompleted(req.userId, bookingId);
+      res.status(200).json({ success: true, data: updated });
+    } catch (err) {
+      next(err);
+    }
+  };
 }

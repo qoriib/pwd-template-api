@@ -119,6 +119,7 @@ export class BookingService {
           property: true,
           room: true,
           paymentProof: true,
+          review: true,
         },
       }),
     ]);

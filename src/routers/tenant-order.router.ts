@@ -41,6 +41,13 @@ export class TenantOrderRouter {
       AuthMiddleware.requireVerified,
       this.controller.reminder
     );
+    this.router.post(
+      '/:id/complete',
+      AuthMiddleware.requireUser,
+      AuthMiddleware.requireTenant,
+      AuthMiddleware.requireVerified,
+      this.controller.complete
+    );
   }
 
   public getRouter(): Router {

@@ -115,6 +115,17 @@ export class TenantOrderService {
     });
   }
 
+  async markCompleted(userId: number, bookingId: number) {
+    const booking = await this.findTenantBooking(userId, bookingId);
+    if (booking.status !== BookingStatus.PROCESSING) {
+      throw new AppError('Only processing bookings can be completed', 400);
+    }
+    return prisma.booking.update({
+      where: { id: booking.id },
+      data: { status: BookingStatus.COMPLETED },
+    });
+  }
+
   async sendReminder(userId: number, bookingId: number) {
     const booking = await this.findTenantBooking(userId, bookingId);
     this.notification.sendCheckInReminder(booking);
